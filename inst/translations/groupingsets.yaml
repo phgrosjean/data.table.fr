@@ -1,0 +1,86 @@
+title:
+  original: ' Grouping Set aggregation for data tables '
+  translation: ~
+description:
+  original: |2
+      Calculate aggregates at various levels of groupings producing multiple (sub-)totals. Reflects SQLs \emph{GROUPING SETS} operations.
+  translation: ~
+arguments:
+  x:
+    original: \code{data.table}.
+    translation: ~
+  \dots:
+    original: argument passed to custom user methods. Ignored for \code{data.table}
+      methods.
+    translation: ~
+  j:
+    original: expression passed to data.table \code{j}.
+    translation: ~
+  by:
+    original: character column names by which we are grouping.
+    translation: ~
+  sets:
+    original: list of character vector reflecting grouping sets, used in \code{groupingsets}
+      for flexibility.
+    translation: ~
+  .SDcols:
+    original: columns to be used in \code{j} expression in \code{.SD} object.
+    translation: ~
+  id:
+    original: logical default \code{FALSE}. If \code{TRUE} it will add leading column
+      with bit mask of grouping sets.
+    translation: ~
+  jj:
+    original: quoted version of \code{j} argument, for convenience. When provided
+      function will ignore \code{j} argument.
+    translation: ~
+details:
+  original: |2
+        All three functions \code{rollup, cube, groupingsets} are generic methods, \code{data.table} methods are provided.
+  translation: ~
+value:
+  original: |2
+        A data.table with various aggregates.
+  translation: ~
+seealso:
+  original: |2
+     \code{\link{data.table}}, \code{\link{rbindlist}}
+  translation: ~
+references:
+  original: |
+    \url{https://www.postgresql.org/docs/9.5/static/queries-table-expressions.html#QUERIES-GROUPING-SETS}
+    \url{https://www.postgresql.org/docs/9.5/static/functions-aggregate.html#FUNCTIONS-GROUPING-TABLE}
+  translation: ~
+examples:
+  original: |
+    n = 24L
+    set.seed(25)
+    DT <- data.table(
+        color = sample(c("green","yellow","red"), n, TRUE),
+        year = as.Date(sample(paste0(2011:2015,"-01-01"), n, TRUE)),
+        status = as.factor(sample(c("removed","active","inactive","archived"), n, TRUE)),
+        amount = sample(1:5, n, TRUE),
+        value = sample(c(3, 3.5, 2.5, 2), n, TRUE)
+    )
+
+    # rollup
+    rollup(DT, j = sum(value), by = c("color","year","status")) # default id=FALSE
+    rollup(DT, j = sum(value), by = c("color","year","status"), id=TRUE)
+    rollup(DT, j = lapply(.SD, sum), by = c("color","year","status"), id=TRUE, .SDcols="value")
+    rollup(DT, j = c(list(count=.N), lapply(.SD, sum)), by = c("color","year","status"), id=TRUE)
+
+    # cube
+    cube(DT, j = sum(value), by = c("color","year","status"), id=TRUE)
+    cube(DT, j = lapply(.SD, sum), by = c("color","year","status"), id=TRUE, .SDcols="value")
+    cube(DT, j = c(list(count=.N), lapply(.SD, sum)), by = c("color","year","status"), id=TRUE)
+
+    # groupingsets
+    groupingsets(DT, j = c(list(count=.N), lapply(.SD, sum)), by = c("color","year","status"),
+                 sets = list("color", c("year","status"), character()), id=TRUE)
+  translation: ~
+untranslatable:
+- alias
+- name
+- keyword
+- concept
+- usage

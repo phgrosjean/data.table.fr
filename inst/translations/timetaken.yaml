@@ -1,0 +1,27 @@
+title:
+  original: ' Pretty print of time taken '
+  translation: ~
+description:
+  original: |2
+       Pretty print of time taken since last started.at.
+  translation: ~
+arguments:
+  started.at:
+    original: ' The result of proc.time() taken some time earlier. '
+    translation: ~
+value:
+  original: |2
+        A character vector of the form HH:MM:SS, or SS.MMMsec if under 60 seconds.
+  translation: ~
+examples:
+  original: |
+    started.at=proc.time()
+    Sys.sleep(1)
+    cat("Finished in",timetaken(started.at),"\n")
+  translation: ~
+untranslatable:
+- alias
+- name
+- keyword
+- concept
+- usage

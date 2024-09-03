@@ -1,0 +1,21 @@
+title:
+  original: ' Deprecated. '
+  translation: ~
+description:
+  original: |2
+      This function is deprecated. It will be removed in future. Please use \code{\link{setkey}}.
+  translation: ~
+examples:
+  original: |
+    # dummy example section to pass release check that all .Rd files have examples
+  translation: ~
+arguments:
+  x:
+    original: ' Deprecated. '
+    translation: ~
+untranslatable:
+- alias
+- name
+- keyword
+- concept
+- usage

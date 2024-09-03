@@ -1,0 +1,42 @@
+title:
+  original: Efficient xts to as.data.table conversion
+  translation: ~
+description:
+  original: |2
+      Efficient conversion xts to data.table.
+  translation: ~
+arguments:
+  x:
+    original: xts to convert to data.table
+    translation: ~
+  keep.rownames:
+    original: Default is \code{TRUE}. If \code{TRUE}, adds the xts input's index as
+      a separate column named \code{"index"}. \code{keep.rownames = "id"} names the
+      index column \code{"id"} instead.
+    translation: ~
+  key:
+    original: ' Character vector of one or more column names which is passed to \code{\link{setkeyv}}. '
+    translation: ~
+  \dots:
+    original: ignored, just for consistency with \code{as.data.table}
+    translation: ~
+seealso:
+  original: ' \code{\link{as.xts.data.table}} '
+  translation: ~
+examples:
+  original: |
+    if (requireNamespace("xts", quietly = TRUE)) {
+      data(sample_matrix, package = "xts")
+      sample.xts <- xts::as.xts(sample_matrix) # xts might not be attached on search path
+      # print head of xts
+      print(head(sample.xts))
+      # print data.table
+      print(as.data.table(sample.xts))
+    }
+  translation: ~
+untranslatable:
+- alias
+- name
+- keyword
+- concept
+- usage

@@ -1,0 +1,59 @@
+title:
+  original: Fast droplevels
+  translation: ~
+description:
+  original: |2
+      Similar to \code{base::droplevels} but \emph{much faster}.
+  translation: ~
+arguments:
+  x:
+    original: ' \code{factor} or \code{data.table} where unused levels should be dropped. '
+    translation: ~
+  exclude:
+    original: ' A \code{character} vector of factor levels which are dropped no matter
+      of presented or not. '
+    translation: ~
+  except:
+    original: ' An \code{integer} vector of indices of data.table columns which are
+      not modified by dropping levels. '
+    translation: ~
+  in.place:
+    original: ' logical (default is \code{FALSE}). If \code{TRUE} levels of factors
+      of \code{data.table} are modified in-place. '
+    translation: ~
+  \dots:
+    original: ' further arguments passed to methods '
+    translation: ~
+value:
+  original: |2
+      \code{fdroplevels} returns a \code{factor}.
+
+      \code{droplevels} returns a \code{data.table} where levels are dropped at factor columns.
+  translation: ~
+examples:
+  original: |
+    # on vectors
+    x = factor(letters[1:10])
+    fdroplevels(x[1:5])
+    # exclude levels from drop
+    fdroplevels(x[1:5], exclude = c("a", "c"))
+
+    # on data.table
+    DT = data.table(a = factor(1:10), b = factor(letters[1:10]))
+    droplevels(head(DT))[["b"]]
+    # exclude levels
+    droplevels(head(DT), exclude = c("b", "c"))[["b"]]
+    # except columns from drop
+    droplevels(head(DT), except = 2)[["b"]]
+    droplevels(head(DT), except = 1)[["b"]]
+  translation: ~
+seealso:
+  original: |2
+      \code{\link{data.table}}, \code{\link{duplicated}}, \code{\link{unique}}
+  translation: ~
+untranslatable:
+- alias
+- name
+- keyword
+- concept
+- usage

@@ -1,0 +1,58 @@
+title:
+  original: Fill missing values
+  translation: ~
+description:
+  original: |2
+      Fast fill missing values using constant value, \emph{last observation carried forward} or \emph{next observation carried backward}.
+  translation: ~
+arguments:
+  x:
+    original: ' vector, list, data.frame or data.table of numeric columns. '
+    translation: ~
+  type:
+    original: ' character, one of \emph{"const"}, \emph{"locf"} or \emph{"nocb"}.
+      Defaults to \code{"const"}. '
+    translation: ~
+  fill:
+    original: ' numeric or integer, value to be used to fill. '
+    translation: ~
+  nan:
+    original: ' (numeric \code{x} only) Either \code{NaN} or \code{NA}; if the former,
+      \code{NaN} is treated as distinct from \code{NA}, otherwise, they are treated
+      the same during replacement? '
+    translation: ~
+  cols:
+    original: ' numeric or character vector specifying columns to be updated. '
+    translation: ~
+details:
+  original: |2
+      Only \emph{double} and \emph{integer} data types are currently supported.
+
+      Note that both \code{nafill} and \code{setnafill} provide some verbose output when \code{getOption('datatable.verbose')} is \code{TRUE}.
+  translation: ~
+value:
+  original: |2
+      A list except when the input is a \code{vector} in which case a \code{vector} is returned. For \code{setnafill} the input argument is returned, updated by reference.
+  translation: ~
+examples:
+  original: |
+    x = 1:10
+    x[c(1:2, 5:6, 9:10)] = NA
+    nafill(x, "locf")
+
+    dt = data.table(v1=x, v2=shift(x)/2, v3=shift(x, -1L)/2)
+    nafill(dt, "nocb")
+
+    setnafill(dt, "locf", cols=c("v2","v3"))
+    dt
+  translation: ~
+seealso:
+  original: |2
+      \code{\link{shift}}, \code{\link{data.table}}
+  translation: ~
+untranslatable:
+- alias
+- name
+- keyword
+- concept
+- usage

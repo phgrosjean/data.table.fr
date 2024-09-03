@@ -1,0 +1,45 @@
+title:
+  original: ' Address in RAM of a variable '
+  translation: " Adresse en mémoire RAM d'une variable "
+description:
+  original: |2
+        Returns the pointer address of its argument.
+  translation: |2
+        Retourne l'adresse du pointeur de son argument.
+arguments:
+  x:
+    original: ' Anything. '
+    translation: " N'importe quel objet. "
+details:
+  original: |
+    Sometimes useful in determining whether a value has been copied or not, programmatically.
+  translation: |
+    Parfois utile pour déterminer si une valeur a été copiée par programmation ou non.
+value:
+  original: |2
+        A character vector length 1.
+  translation: |2
+        Un vecteur de chaînes de caractères de longueur 1.
+seealso:
+  original: |2
+      \code{\link{copy}}
+  translation: |2
+      \code{\link{copy}}
+references:
+  original: |2
+      \url{https://stackoverflow.com/a/10913296/403310} (but implemented in C without using \code{.Internal(inspect())})
+  translation: |2
+      \url{https://stackoverflow.com/a/10913296/403310} (mais implémenté en C sans utiliser \code{.Internal(inspect())})
+examples:
+  original: |
+    x=1
+    address(x)
+  translation: |
+    x=1
+    address(x)
+untranslatable:
+- alias
+- name
+- keyword
+- concept
+- usage

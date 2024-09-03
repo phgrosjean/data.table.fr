@@ -1,0 +1,69 @@
+title:
+  original: Convert a data.table to a matrix
+  translation: ~
+description:
+  original: |
+    Converts a \code{data.table} into a \code{matrix}, optionally using one
+    of the columns in the \code{data.table} as the \code{matrix} \code{rownames}.
+  translation: ~
+arguments:
+  x:
+    original: a \code{data.table}
+    translation: ~
+  rownames:
+    original: |-
+      optional, a single column name or column number to use as
+      the \code{rownames} in the returned \code{matrix}. If \code{TRUE} the
+      \code{\link{key}} of the \code{data.table} will be used if it is a
+      single column, otherwise the first column in the \code{data.table} will
+      be used.
+    translation: ~
+  rownames.value:
+    original: |-
+      optional, a vector of values to be used as the
+      \code{rownames} in the returned \code{matrix}. It must be the same length
+      as \code{nrow(x)}.
+    translation: ~
+  \dots:
+    original: ' Required to be present because the generic `as.matrix` generic has
+      it. Arguments here are not currently used or passed on by this method. '
+    translation: ~
+details:
+  original: |
+    \code{\link{as.matrix}} is a generic function in base R. It dispatches to
+    \code{as.matrix.data.table} if its \code{x} argument is a \code{data.table}.
+
+    The method for \code{data.table}s will return a character matrix if there
+    are only atomic columns and any non-(numeric/logical/complex) column,
+    applying \code{\link{as.vector}} to factors and \code{\link{format}} to other
+    non-character columns. Otherwise, the usual coercion hierarchy (logical <
+    integer < double < complex) will be used, e.g., all-logical data frames
+    will be coerced to a logical matrix, mixed logical-integer will give an
+    integer matrix, etc.
+  translation: ~
+value:
+  original: |
+    A new \code{matrix} containing the contents of \code{x}.
+  translation: ~
+seealso:
+  original: |
+    \code{\link{data.table}}, \code{\link{as.matrix}}, \code{\link{data.matrix}}
+    \code{\link{array}}
+  translation: ~
+examples:
+  original: |
+    DT <- data.table(A = letters[1:10], X = 1:10, Y = 11:20)
+    as.matrix(DT) # character matrix
+    as.matrix(DT, rownames = "A")
+    as.matrix(DT, rownames = 1)
+    as.matrix(DT, rownames = TRUE)
+
+    setkey(DT, A)
+    as.matrix(DT, rownames = TRUE)
+  translation: ~
+untranslatable:
+- alias
+- name
+- keyword
+- concept
+- usage

@@ -1,0 +1,40 @@
+title:
+  original: |
+    Convenience operator for checking if an example is not in a set of elements
+  translation: ~
+description:
+  original: |
+    Check whether an object is absent from a table, i.e., the logical inverse of \code{\link[=base]{in}}. See examples on how missing values are being handled.
+  translation: ~
+arguments:
+  x:
+    original: ' Vector or \code{NULL}: the values to be matched. '
+    translation: ~
+  table:
+    original: ' Vector or \code{NULL}: the values to be matched against. '
+    translation: ~
+value:
+  original: |2
+        Logical vector, \code{TRUE} for each element of \code{x} \emph{absent} from \code{table}, and \code{FALSE} for each element of \code{x} \emph{present} in \code{table}.
+  translation: ~
+seealso:
+  original: ' \code{\link[base]{match}}, \code{\link[data.table]{chmatch}}  '
+  translation: ~
+examples:
+  original: |2
+      11 %notin% 1:10 # TRUE
+      "a" %notin% c("a", "b") # FALSE
+
+      ## NAs on the LHS
+      NA %in% 1:2
+      NA %notin% 1:2
+      ## NAs on the RHS
+      NA %in% c(1:2,NA)
+      NA %notin% c(1:2,NA)
+  translation: ~
+untranslatable:
+- alias
+- name
+- keyword
+- concept
+- usage

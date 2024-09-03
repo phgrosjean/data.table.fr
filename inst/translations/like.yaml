@@ -1,0 +1,54 @@
+title:
+  original: ' Convenience function for calling grep. '
+  translation: ~
+description:
+  original: |2
+      Intended for use in \code{i} in \code{\link[=data.table]{[.data.table}}, i.e., for subsetting/filtering.
+
+      Syntax should be familiar to SQL users, with interpretation as regex.
+  translation: ~
+arguments:
+  vector:
+    original: ' Either a \code{character} or a \code{factor} vector. '
+    translation: ~
+  pattern:
+    original: ' Pattern to be matched '
+    translation: ~
+  ignore.case:
+    original: ' \code{logical}; is \code{pattern} case-sensitive? '
+    translation: ~
+  fixed:
+    original: ' \code{logical}; should \code{pattern} be interpreted as a literal
+      string (i.e., ignoring regular expressions)? '
+    translation: ~
+  perl:
+    original: ' \code{logical}; is \code{pattern} Perl-compatible regular expression? '
+    translation: ~
+details:
+  original: |2
+      Internally, \code{like} is essentially a wrapper around \code{\link[base:grep]{base::grepl}}, except that it is smarter about handling \code{factor} input (\code{base::grep} uses slow \code{as.character} conversion).
+  translation: ~
+value:
+  original: |2
+        Logical vector, \code{TRUE} for items that match \code{pattern}.
+  translation: ~
+note:
+  original: ' Current implementation does not make use of sorted keys. '
+  translation: ~
+seealso:
+  original: ' \code{\link[base:grep]{base::grepl}} '
+  translation: ~
+examples:
+  original: |
+    DT = data.table(Name=c("Mary","George","Martha"), Salary=c(2,3,4))
+    DT[Name %like% "^Mar"]
+    DT[Name %ilike% "mar"]
+    DT[Name %flike% "Mar"]
+    DT[Name %plike% "(?=Ma)(?=.*y)"]
+  translation: ~
+untranslatable:
+- alias
+- name
+- keyword
+- concept
+- usage

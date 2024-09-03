@@ -1,0 +1,34 @@
+docType:
+  original: class
+  translation: ~
+title:
+  original: S4 Definition for data.table
+  translation: ~
+description:
+  original: |2
+      A \code{data.table} can be used in S4 class definitions as either
+      a parent class (inside a \code{contains} argument of \code{setClass}),
+      or as an element of an S4 slot.
+  translation: ~
+author:
+  original: ' Steve Lianoglou '
+  translation: ~
+seealso:
+  original: |2
+      \code{\link{data.table}}
+  translation: ~
+examples:
+  original: |
+    ## Used in inheritance.
+    setClass('SuperDataTable', contains='data.table')
+
+    ## Used in a slot
+    setClass('Something', representation(x='character', dt='data.table'))
+    x <- new("Something", x='check', dt=data.table(a=1:10, b=11:20))
+  translation: ~
+untranslatable:
+- alias
+- name
+- keyword
+- concept
+- usage

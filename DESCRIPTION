@@ -1,0 +1,35 @@
+Package: data.table.fr
+Type: Package
+Title: Extension de `data.frame`
+Version: 1.16.99
+Date: 2024-05-26
+Authors@R: c(
+  person("Philippe", "Grosjean", role = c("aut", "cre"),
+    email = "phgrosjean@sciviews.org",
+    comment = c(ORCID = "0000-0002-2694-9471")),
+  person("Christian", "Wiat", role = "ctb", email = "w9204-rs@yahoo.com"),
+  person("Elise", "Maigne", role = "ctb", email = "elise.maigne@inrae.fr"),
+  person("Vincent", "Rocher", role = "ctb", email = "vincent.rocher@inrae.fr"),
+  person("Vincent", "Runge", role = "ctb", email = "vincent.runge@univ-evry.fr"))
+Maintainer: Philippe Grosjean <phgrosjean@sciviews.org>
+Description: Aggrégation rapide de gros jeux de données (e.g. 100Go en RAM),
+  jointures ordonnées rapides, ajout/modification/suppression rapide de colonnes
+  par groupe sans copie, colonnes de type liste, lecture/écriture rapide de
+  fichiers CSV. Offre une syntaxe naturelle et flexible, pour un développement
+  plus rapide.
+License: MPL-2.0 | file LICENSE
+URL: https://r-datatable.com, https://Rdatatable.gitlab.io/data.table, https://github.com/Rdatatable/data.table
+BugReports: https://github.com/Rdatatable/data.table/issues
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+VignetteBuilder: knitr, R.rsp
+Language: fr
+Translates: data.table (== 1.16.99)
+Imports:
+    data.table(>= 1.16.99),
+    rhelpi18n
+Suggests:
+    knitr,
+    markdown,
+    R.rsp
+Encoding: UTF-8

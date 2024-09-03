@@ -1,0 +1,48 @@
+title:
+  original: ' First/last item of an object '
+  translation: ~
+description:
+  original: |
+    Returns the first/last item of a vector or list, or the first/last row of a data.frame
+    or data.table. The main difference to head/tail is that the default for \code{n} is 1
+    rather than 6.
+  translation: ~
+arguments:
+  x:
+    original: " A vector, list, data.frame or data.table. Otherwise the S3 method\nof
+      \\code{xts::first} is deployed. "
+    translation: ~
+  'n':
+    original: ' A numeric vector length 1. How many items to select. '
+    translation: ~
+  \dots:
+    original: " Not applicable for \\code{data.table} first/last. Any arguments here\nare
+      passed through to \\code{xts}'s first/last. "
+    translation: ~
+value:
+  original: |
+    If no other arguments are supplied it depends on the type of \code{x}. The first/last item
+    of a vector or list. The first/last row of a \code{data.frame} or \code{data.table}.
+    For other types, or if any argument is supplied in addition to \code{x} (such as \code{n}, or
+    \code{keep} in \code{xts}) regardless of \code{x}'s type, then \code{xts::first}/
+    \code{xts::last} is called if \code{xts} has been loaded, otherwise \code{utils::head}/\code{utils::tail}.
+  translation: ~
+seealso:
+  original: ' \code{\link{NROW}}, \code{\link{head}}, \code{\link{tail}} '
+  translation: ~
+examples:
+  original: |
+    first(1:5) # [1] 1
+    x = data.table(x=1:5, y=6:10)
+    first(x) # same as head(x, 1)
+
+    last(1:5) # [1] 5
+    x = data.table(x=1:5, y=6:10)
+    last(x) # same as tail(x, 1)
+  translation: ~
+untranslatable:
+- alias
+- name
+- keyword
+- concept
+- usage
