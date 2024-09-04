@@ -1,6 +1,6 @@
 ---
 title: "Indices secondaires et auto-indexation"
-date: "2024-09-03"
+date: "2024-09-04"
 output:
   markdown::html_format
 vignette: >
@@ -206,7 +206,7 @@ flights["JFK", on = "origin"]
     # i.V1 has same type (character) as x.origin. No coercion needed.
     # on= matches existing index, using index
     # Starting bmerge ...
-    # forder.c a reçu 1 lignes et 1 colonnes
+    # forder.c received 1 rows and 1 columns
     # forderReuseSorting: opt=-1, took 0.000s
     # bmerge: looping bmerge_r took 0.000s
     # bmerge: took 0.000s
@@ -223,7 +223,7 @@ flights["JFK", on = "origin"]
 
 #### -- Comment puis-je faire un sous-ensemble basé sur les colonnes `origin` *et* `dest` ?
 
-Par exemple, si nous voulons un sous-ensemble combinant `"JFK" et "LAX"`, alors :
+Par exemple, si nous voulons un sous-ensemble combinant `c("JFK", "LAX")`, alors :
 
 
 ```r
@@ -416,8 +416,8 @@ names(attributes(dt))
 
 ## première exécution
 (t1 <- system.time(ans <- dt[x == 989L]))
-# utilisateur     système      écoulé 
-#       0.214       0.005       0.219
+#    user  system elapsed 
+#   0.217   0.004   0.221
 head(ans)
 #        x         y
 #    <int>     <num>
@@ -443,14 +443,14 @@ Le temps nécessaire pour créer un sous-ensemble la première fois est égal au
 ```r
 ## sous-ensembles successifs
 (t2 <- system.time(dt[x == 989L]))
-# utilisateur     système      écoulé 
-#       0.009       0.000       0.009
+#    user  system elapsed 
+#   0.009   0.000   0.009
 system.time(dt[x %in% 1989:2012])
-# utilisateur     système      écoulé 
-#       0.008       0.000       0.008
+#    user  system elapsed 
+#   0.009   0.000   0.009
 ```
 
-* L'exécution la première fois a pris 0.219 secondes tandis que la deuxième fois, elle a pris 0.009 secondes.
+* L'exécution la première fois a pris 0.221 secondes tandis que la deuxième fois, elle a pris 0.009 secondes.
 
 * L'indexation automatique peut être désactivée en définissant l'argument global `options(datatable.auto.index = FALSE)`.
 

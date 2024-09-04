@@ -1,6 +1,6 @@
 ---
 title: "Restructurer efficacement avec les data.tables"
-date: "2024-09-03"
+date: "2024-09-04"
 output:
   markdown::html_format
 vignette: >
@@ -65,9 +65,9 @@ str(DT)
 # Classes 'data.table' and 'data.frame':	5 obs. of  5 variables:
 #  $ family_id : int  1 2 3 4 5
 #  $ age_mother: int  30 27 26 32 29
-#  $ dob_child1: IDate, format: "1998-11-26" "1996-06-22" "2002-07-11" ...
-#  $ dob_child2: IDate, format: "2000-01-29" NA "2004-04-05" ...
-#  $ dob_child3: IDate, format: NA NA "2007-09-02" ...
+#  $ dob_child1: IDate, format: "1998-11-26" "1996-06-22" ...
+#  $ dob_child2: IDate, format: "2000-01-29" NA ...
+#  $ dob_child3: IDate, format: NA NA ...
 #  - attr(*, ".internal.selfref")=<externalptr>
 ```
 
@@ -102,7 +102,7 @@ str(DT.m1)
 #  $ family_id : int  1 2 3 4 5 1 2 3 4 5 ...
 #  $ age_mother: int  30 27 26 32 29 30 27 26 32 29 ...
 #  $ variable  : Factor w/ 3 levels "dob_child1","dob_child2",..: 1 1 1 1 1 2 2 2 2 2 ...
-#  $ value     : IDate, format: "1998-11-26" "1996-06-22" "2002-07-11" ...
+#  $ value     : IDate, format: "1998-11-26" "1996-06-22" ...
 #  - attr(*, ".internal.selfref")=<externalptr>
 ```
 
@@ -210,13 +210,20 @@ s2 <- "family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gende
 5         29 2000-12-05 2005-02-28         NA             2             1            NA"
 DT <- fread(s2)
 DT
-#    family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3
-#        <int>      <int>     <IDat>     <IDat>     <IDat>         <int>         <int>         <int>
-# 1:         1         30 1998-11-26 2000-01-29       <NA>             1             2            NA
-# 2:         2         27 1996-06-22       <NA>       <NA>             2            NA            NA
-# 3:         3         26 2002-07-11 2004-04-05 2007-09-02             2             2             1
-# 4:         4         32 2004-10-10 2009-08-27 2012-07-21             1             1             1
-# 5:         5         29 2000-12-05 2005-02-28       <NA>             2             1            NA
+#    family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1
+#        <int>      <int>     <IDat>     <IDat>     <IDat>         <int>
+# 1:         1         30 1998-11-26 2000-01-29       <NA>             1
+# 2:         2         27 1996-06-22       <NA>       <NA>             2
+# 3:         3         26 2002-07-11 2004-04-05 2007-09-02             2
+# 4:         4         32 2004-10-10 2009-08-27 2012-07-21             1
+# 5:         5         29 2000-12-05 2005-02-28       <NA>             2
+#    gender_child2 gender_child3
+#            <int>         <int>
+# 1:             2            NA
+# 2:            NA            NA
+# 3:             2             1
+# 4:             1             1
+# 5:             1            NA
 
 ## 1 = femme, 2 = homme
 ```
@@ -253,8 +260,8 @@ str(DT.c1) ## la colonne 'gender' est un type de caractère maintenant !
 #  $ family_id : int  1 1 1 2 2 2 3 3 3 4 ...
 #  $ age_mother: int  30 30 30 27 27 27 26 26 26 32 ...
 #  $ child     : chr  "child1" "child2" "child3" "child1" ...
-#  $ dob       : IDate, format: "1998-11-26" "2000-01-29" NA ...
-#  $ gender    : IDate, format: "1970-01-02" "1970-01-03" NA ...
+#  $ dob       : IDate, format: "1998-11-26" "2000-01-29" ...
+#  $ gender    : IDate, format: "1970-01-02" "1970-01-03" ...
 #  - attr(*, ".internal.selfref")=<externalptr> 
 #  - attr(*, "sorted")= chr [1:3] "family_id" "age_mother" "child"
 ```
@@ -312,7 +319,7 @@ str(DT.m2) ## le type de col est préservé
 #  $ family_id : int  1 2 3 4 5 1 2 3 4 5 ...
 #  $ age_mother: int  30 27 26 32 29 30 27 26 32 29 ...
 #  $ variable  : Factor w/ 3 levels "1","2","3": 1 1 1 1 1 2 2 2 2 2 ...
-#  $ dob       : IDate, format: "1998-11-26" "1996-06-22" "2002-07-11" ...
+#  $ dob       : IDate, format: "1998-11-26" "1996-06-22" ...
 #  $ gender    : int  1 2 2 1 2 2 NA 2 1 1 ...
 #  - attr(*, ".internal.selfref")=<externalptr>
 ```
@@ -433,7 +440,7 @@ DT.m3
 
 Dans le code ci-dessus, nous avons utilisé `sep="_child"`, ce qui entraîne la transformation des colonnes uniquement si elle contiennent cette chaîne (six noms de colonnes séparés en deux groupes chacun). L'argument `child=as.integer` signifie que le second groupe donnera lieu à une colonne de sortie nommée `child` avec des valeurs définies en appliquant la fonction `as.integer` aux chaînes de caractères de ce groupe.
 
-Enfin, nous considérons un exemple (emprunté au paquet tidyr) où nous devons définir les groupes à l'aide d'une expression régulière plutôt qu'un séparateur.
+Enfin, nous considérons un exemple (emprunté au package tidyr) où nous devons définir les groupes à l'aide d'une expression régulière plutôt qu'un séparateur.
 
 
 ```r
@@ -481,13 +488,20 @@ Nous pouvons désormais fournir **plusieurs colonnes `value.var`** à `dcast` po
 DT.c2 = dcast(DT.m2, family_id + age_mother ~ variable, value.var = c("dob", "gender"))
 DT.c2
 # Key: <family_id, age_mother>
-#    family_id age_mother      dob_1      dob_2      dob_3 gender_1 gender_2 gender_3
-#        <int>      <int>     <IDat>     <IDat>     <IDat>    <int>    <int>    <int>
-# 1:         1         30 1998-11-26 2000-01-29       <NA>        1        2       NA
-# 2:         2         27 1996-06-22       <NA>       <NA>        2       NA       NA
-# 3:         3         26 2002-07-11 2004-04-05 2007-09-02        2        2        1
-# 4:         4         32 2004-10-10 2009-08-27 2012-07-21        1        1        1
-# 5:         5         29 2000-12-05 2005-02-28       <NA>        2        1       NA
+#    family_id age_mother      dob_1      dob_2      dob_3 gender_1 gender_2
+#        <int>      <int>     <IDat>     <IDat>     <IDat>    <int>    <int>
+# 1:         1         30 1998-11-26 2000-01-29       <NA>        1        2
+# 2:         2         27 1996-06-22       <NA>       <NA>        2       NA
+# 3:         3         26 2002-07-11 2004-04-05 2007-09-02        2        2
+# 4:         4         32 2004-10-10 2009-08-27 2012-07-21        1        1
+# 5:         5         29 2000-12-05 2005-02-28       <NA>        2        1
+#    gender_3
+#       <int>
+# 1:       NA
+# 2:       NA
+# 3:        1
+# 4:        1
+# 5:       NA
 ```
 
 * Les attributs sont préservés dans le résultat dans la mesure du possible.
